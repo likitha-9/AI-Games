@@ -49,6 +49,7 @@ public class Main extends Application {
 
 		border.setLeft(interact());
 
+		
 		Scene scene = new Scene(border, 400, 300);
 
 		mainStage.setTitle("Minesweeper");
