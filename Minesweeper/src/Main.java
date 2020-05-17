@@ -95,7 +95,13 @@ public class Main extends Application {
 
 		custom_vbox.getChildren().addAll(hbox_tiles, hbox_mines);
 
-				// both sets of controls
+		// properties of radio buttons
+		preset.setToggleGroup(group);
+		preset.setSelected(true);
+		custom.setToggleGroup(group);
+		custom.setSelected(true);
+
+		// both sets of controls
 		VBox both = new VBox();
 		both.setPadding(new Insets(10, 0, 0, 20));
 		both.getChildren().addAll(preset, preset_vbox, new Text("\n"), custom, custom_vbox, new Text("\n"), start);
