@@ -43,6 +43,9 @@ public class Main extends Application {
 		
 	}
 	
+	/**
+	 * @return
+	 */
 	public VBox interact()
 	{
 		VBox vbox=new VBox();
@@ -53,15 +56,15 @@ public class Main extends Application {
 		tiles.setCenterShape(true);
 		tiles.setMajorTickUnit(10);
 		tiles.setMinorTickCount(1);
-		tiles.setSnapToTicks(true);
 		tiles.setShowTickMarks(true);
+		tiles.setSnapToTicks(true);
 		tiles.setShowTickLabels(true);
 		
 		mines.setCenterShape(true);
 		mines.setMajorTickUnit(10);
 		mines.setMinorTickCount(1);
-		mines.setSnapToTicks(true);
 		mines.setShowTickMarks(true);
+		mines.setSnapToTicks(true);
 		mines.setShowTickLabels(true);
 		
 		vbox.getChildren().addAll(start,new Text("\n\nIncrease/decrease size of board.\n"),tiles,new Text("\nIncrease/decrease number of mines."),mines);
