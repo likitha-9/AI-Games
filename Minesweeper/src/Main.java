@@ -20,10 +20,10 @@ public class Main extends Application {
 	static BorderPane left=new BorderPane();	//BorderPane's left component
 
 	/*
-	 * Elements for interactiveness in the UI
+	 * Elements for interactability in the UI
 	 */
 	static Button start=new Button("Generate");
-	static Slider tiles=new Slider(), bombs=new Slider();
+	static Slider tiles=new Slider(10,100,10), mines=new Slider(10,150,10);
 	
 	@Override
 	public void start(Stage mainStage) throws Exception {
@@ -44,10 +44,22 @@ public class Main extends Application {
 		vbox.setPadding(new Insets(10));
 		
 		start.setCenterShape(true);
-		tiles.setCenterShape(true);
-		bombs.setCenterShape(true);
 		
-		vbox.getChildren().addAll(start,new Text("\n\nIncrease/decrease size of board.\n"),tiles,new Text("\n\nIncrease/decrease number of mines."),bombs);
+		tiles.setCenterShape(true);
+		tiles.setMajorTickUnit(10);
+		tiles.setMinorTickCount(1);
+		tiles.setSnapToTicks(true);
+		tiles.setShowTickMarks(true);
+		tiles.setShowTickLabels(true);
+		
+		mines.setCenterShape(true);
+		mines.setMajorTickUnit(10);
+		mines.setMinorTickCount(1);
+		mines.setSnapToTicks(true);
+		mines.setShowTickMarks(true);
+		mines.setShowTickLabels(true);
+		
+		vbox.getChildren().addAll(start,new Text("\n\nIncrease/decrease size of board.\n"),tiles,new Text("\nIncrease/decrease number of mines."),mines);
 		return vbox;
 		
 	}
