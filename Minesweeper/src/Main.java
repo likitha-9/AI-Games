@@ -1,9 +1,15 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
+
+/**
+ * 
+ * @author likitha-9
+ *
+ */
 
 public class Main extends Application {
 
@@ -12,9 +18,10 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage mainStage) throws Exception {
-		Scene scene=new Scene(new Label("Welcome to Minesweeper!"), 400,200);
 		
-		border.getChildren().add(left);
+		border.setLeft(left);;
+		left.getChildren().add(new Button());
+		Scene scene=new Scene(border, 400,200);
 		
 		mainStage.setTitle("Minesweeper");
 		mainStage.setScene(scene);
