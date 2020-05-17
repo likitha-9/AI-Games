@@ -23,8 +23,13 @@ public class Main extends Application {
 	 * Elements for interactability in the UI
 	 */
 	static Button start=new Button("Generate");
+	
 	static Slider tiles=new Slider(10,100,10), mines=new Slider(10,150,10);
 	
+	
+	/*
+	 * JavaFX Application
+	 */
 	@Override
 	public void start(Stage mainStage) throws Exception {
 		
@@ -64,6 +69,7 @@ public class Main extends Application {
 		
 	}
 	
+	// 	- main -
 	public static void main(String args[]) {
 		Application.launch();
 	}
