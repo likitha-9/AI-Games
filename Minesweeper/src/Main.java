@@ -90,7 +90,14 @@ public class Main extends Application {
 			if (presetFlag) {
 				MineField.generateBoard((int) presetTiles.getValue(), (int) presetMines.getValue());
 			} else {
+				/*
+				 * Writing test cases for custom data: make sure that the dimensions are within
+				 * range. The maximum dimensions that the screen could handle is 50x35. So, 50
+				 * columns is the max data that should be allowed. AND disregard any strings,
+				 * special characters, etc.
+				 */
 				try {
+					// Strings are parsed into ints and the above comment is implemented below.
 					if (Integer.parseInt(customTiles.getText()) >= 10 && Integer.parseInt(customTiles.getText()) <= 50
 							&& Integer.parseInt(customMines.getText()) >= 10
 							&& Integer.parseInt(customMines.getText()) <= 2000) {
@@ -103,6 +110,7 @@ public class Main extends Application {
 										+ "Number of mines should be within 9<x<2001."));
 					}
 				} catch (NumberFormatException E) {
+					// Strings, special chars aren't considered valid data.
 					ErrorMessages.displayErrorMessages(new Text("Please make sure you input valid data!"));
 				}
 			}
