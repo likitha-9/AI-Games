@@ -35,11 +35,13 @@ public class Main extends Application {
 
 	// prefixed controls
 	static Slider tiles = new Slider(10, 100, 10), mines = new Slider(10, 150, 10); // prefixed tiles, mines
+	VBox preset_vbox = new VBox();
 
 	// custom controls
 	Label c_l_tiles = new Label("Specify the number of tiles:\t"),
 			c_l_mines = new Label("Specify the number of mines:\t"); // -> c_l_[a-z]+ -> c=custom, l=label
 	static TextField c_t_tiles = new TextField(), c_t_mines = new TextField(); // -> c_t_[a-z]+ -> c=custom, t=TextField
+	VBox custom_vbox=new VBox();
 
 	/*
 	 * JavaFX Application
@@ -48,6 +50,16 @@ public class Main extends Application {
 	public void start(Stage mainStage) throws Exception {
 		Scene scene = new Scene(border, 400, 300);
 		border.setLeft(interact());
+
+		//when one option is selected, disable the others
+		preset.setOnMouseClicked(e->{
+			preset_vbox.setDisable(false);
+			custom_vbox.setDisable(true);
+		});
+		custom.setOnMouseClicked(e->{
+			custom_vbox.setDisable(false);
+			preset_vbox.setDisable(true);
+		});
 
 		mainStage.setTitle("Minesweeper");
 		mainStage.setScene(scene);
@@ -60,7 +72,6 @@ public class Main extends Application {
 		start.setCenterShape(true);
 
 		// prefixed/preset controls
-		VBox preset_vbox = new VBox();
 		preset_vbox.setPadding(new Insets(0, 0, 0, 20));
 
 		tiles.setCenterShape(true);
@@ -81,7 +92,6 @@ public class Main extends Application {
 				new Text("Increase/decrease number of mines."), mines);
 
 		// custom controls
-		VBox custom_vbox = new VBox();
 		custom_vbox.setPadding(new Insets(0, 0, 0, 20));
 
 		HBox hbox_tiles = new HBox(), hbox_mines = new HBox();
