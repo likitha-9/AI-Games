@@ -70,11 +70,9 @@ public class Main extends Application {
 		mainStage.setTitle("Minesweeper");
 		mainStage.setScene(scene);
 		mainStage.show();
-
 	}
 
 	public VBox interact() {
-
 		start.setCenterShape(true);
 
 		// prefixed/preset controls
@@ -110,14 +108,13 @@ public class Main extends Application {
 		preset.setSelected(true);
 		custom.setToggleGroup(group);
 
-		// both sets of controls
+		// adding both sets of controls into a VBox
 		VBox both = new VBox();
 		both.setPadding(new Insets(10, 0, 0, 20));
 		both.getChildren().addAll(preset, preset_vbox, new Text("\n"), custom, custom_vbox, new Text("\n"), start);
 
 		// return statement
 		return both;
-
 	}
 
 	// - main -
