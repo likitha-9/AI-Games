@@ -81,7 +81,8 @@ public class Main extends Application {
 		 */
 		start.setOnAction(e -> {
 			if (preset_flag) {
-				MineField.preset_board((int)tiles.getValue(), (int)mines.getValue());
+				border.setRight(MineField.preset_board((int) tiles.getValue(), (int) mines.getValue()));
+
 			} else {
 
 			}
