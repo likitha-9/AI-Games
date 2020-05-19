@@ -11,8 +11,8 @@ public class EmptyField {
 	// Number of tiles = determined by preset/custom data
 	static int fieldWidth, fieldHeight;
 
-	static int cellsX,cellsY;
-	static Board[][] grid = new Board[cellsX][cellsY];
+	static int cellsX, cellsY;
+	static Board[][] grid;
 
 	static class Board extends StackPane {
 
@@ -34,16 +34,23 @@ public class EmptyField {
 		}
 	}
 
-	public Pane createBoard(int size, int mines) {
+	public static Pane createBoard(int size, int mines) {
 
 		Pane pane = new Pane();
 		pane.setPadding(new Insets(10));
 
-		fieldWidth=sizeOfTileWidth*size;
-		fieldHeight=sizeOfTileHeight*size;
+		fieldWidth = sizeOfTileWidth * size;
+		fieldHeight = sizeOfTileHeight * size;
 
-		cellsX = fieldWidth / sizeOfTileWidth;
-		cellsY = fieldHeight / sizeOfTileHeight;
+		// Max number of cells able to fit vertically was 35. Horizontally. it's 50.
+		cellsX = size;
+
+		if (size <= 35)
+			cellsY = size;
+		else
+			cellsY = 35;
+
+		grid = new Board[cellsX][cellsY];
 
 		// Define board's dimensions
 		pane.setPrefSize(fieldWidth, fieldHeight);
