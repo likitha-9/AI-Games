@@ -32,6 +32,7 @@ public class Main extends Application {
 	// toggle b/n preset and custom controls
 	final ToggleGroup group = new ToggleGroup();
 	static RadioButton preset = new RadioButton("Use the sliders."), custom = new RadioButton("Enter custom data.");
+	static boolean preset_flag = true, custom_flag = false; // flags to check which of the options are true
 
 	// prefixed controls
 	Label l_tiles = new Label("Increase/decrease size of board."),
@@ -61,10 +62,29 @@ public class Main extends Application {
 		preset.setOnMouseClicked(e -> {
 			preset_vbox.setDisable(false);
 			custom_vbox.setDisable(true);
+
+			preset_flag = true;
+			custom_flag = false;
 		});
 		custom.setOnMouseClicked(e -> {
 			custom_vbox.setDisable(false);
 			preset_vbox.setDisable(true);
+
+			custom_flag = true;
+			preset_flag = false;
+		});
+
+		/*
+		 * When START is clicked on, then pass the flags into one of the methods in
+		 * MineField.java (depending on whether the user selected from preset entries or
+		 * entered their own custom data.
+		 */
+		start.setOnAction(e -> {
+			if (preset_flag) {
+				MineField.preset_board((int)tiles.getValue(), (int)mines.getValue());
+			} else {
+
+			}
 		});
 
 		mainStage.setTitle("Minesweeper");
