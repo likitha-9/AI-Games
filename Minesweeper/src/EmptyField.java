@@ -4,17 +4,21 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class MineField {
+public class EmptyField {
 
-	static final int sizeOfCellWidth = 20, sizeOfCellHeight = 20, boardWidth = 600, boardHeight = 300;
-	static final int cellsX = boardWidth / sizeOfCellWidth;
-	static final int cellsY = boardHeight / sizeOfCellHeight;
-	public static Board[][] grid = new Board[cellsX][cellsY];
+	static final int sizeOfTileWidth = 20, sizeOfTileHeight = 20; // standard size of each tile
+
+	// number of tiles = determined by custom/preset data
+	static int fieldWidth, fieldHeight;
+
+	static final int cellsX = fieldWidth / sizeOfTileWidth;
+	static final int cellsY = fieldHeight / sizeOfTileHeight;
+	static Board[][] grid = new Board[cellsX][cellsY];
 
 	static class Board extends StackPane {
 
 		// each rectangle is defined as a square. A square = 1 cell in the blank canvas
-		Rectangle border = new Rectangle(sizeOfCellWidth, sizeOfCellHeight);
+		Rectangle border = new Rectangle(sizeOfTileWidth, sizeOfTileHeight);
 
 		// This constructor is called each time a new cell has to be defined
 		public Board(int x, int y) {
@@ -22,8 +26,8 @@ public class MineField {
 			getChildren().add(border);
 
 			// Each cell's dimensions are of sizeOfCellWidth and sizeOfCellHeight
-			setTranslateX(x * sizeOfCellWidth);
-			setTranslateY(y * sizeOfCellHeight);
+			setTranslateX(x * sizeOfTileWidth);
+			setTranslateY(y * sizeOfTileHeight);
 
 			// Each cell is initially of a light blue color
 			border.setFill(Color.ALICEBLUE);
@@ -36,7 +40,7 @@ public class MineField {
 		pane.setPadding(new Insets(10));
 
 		// Define board's dimensions
-		pane.setPrefSize(boardWidth, boardHeight);
+		pane.setPrefSize(fieldWidth, fieldHeight);
 
 		// Fill the board with cells
 		for (int i = 0; i < cellsX; i++) {
