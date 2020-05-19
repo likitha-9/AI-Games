@@ -32,19 +32,22 @@ public class Main extends Application {
 	// toggle b/n preset and custom controls
 	final ToggleGroup group = new ToggleGroup();
 	static RadioButton preset = new RadioButton("Use the sliders."), custom = new RadioButton("Enter custom data.");
-	static boolean preset_flag = true, custom_flag = false; // flags to check which of the options are true
+	static boolean presetFlag = true, customFlag = false; // flags to check which of the options are true
 
 	// prefixed controls
 	Label l_tiles = new Label("Increase/decrease size of board."),
-			l_mines = new Label("Increase/decrease the number of mines.");// l_[a-z]+ -> l=label
-	static Slider tiles = new Slider(10, 100, 10), mines = new Slider(10, 150, 10); // prefixed tiles, mines
-	VBox preset_vbox = new VBox();
+			l_mines = new Label("Increase/decrease the number of mines.");/*
+			 * l_[a-z]+ -> l=label (underscores are used
+			 * for Label identifiers ONLY)
+			 */
+	static Slider presetTiles = new Slider(10, 100, 10), presetMines = new Slider(10, 150, 10); // prefixed tiles, mines
+	VBox presetVbox = new VBox();
 
 	// custom controls
 	Label c_l_tiles = new Label("Specify the number of tiles:\t"),
 			c_l_mines = new Label("Specify the number of mines:\t"); // -> c_l_[a-z]+ -> c=custom, l=label
-	static TextField c_t_tiles = new TextField(), c_t_mines = new TextField(); // -> c_t_[a-z]+ -> c=custom, t=TextField
-	VBox custom_vbox = new VBox();
+	static TextField customTiles = new TextField(), customMines = new TextField();
+	VBox customVbox = new VBox();
 
 	/*
 	 * JavaFX Application
@@ -55,23 +58,23 @@ public class Main extends Application {
 		border.setLeft(interact());
 
 		// by default, set the first option to true
-		preset_vbox.setDisable(false);
-		custom_vbox.setDisable(true);
+		presetVbox.setDisable(false);
+		customVbox.setDisable(true);
 
 		// when one option is selected, disable the others
 		preset.setOnMouseClicked(e -> {
-			preset_vbox.setDisable(false);
-			custom_vbox.setDisable(true);
+			presetVbox.setDisable(false);
+			customVbox.setDisable(true);
 
-			preset_flag = true;
-			custom_flag = false;
+			presetFlag = true;
+			customFlag = false;
 		});
 		custom.setOnMouseClicked(e -> {
-			custom_vbox.setDisable(false);
-			preset_vbox.setDisable(true);
+			customVbox.setDisable(false);
+			presetVbox.setDisable(true);
 
-			custom_flag = true;
-			preset_flag = false;
+			customFlag = true;
+			presetFlag = false;
 		});
 
 		/*
@@ -80,11 +83,10 @@ public class Main extends Application {
 		 * entered their own custom data.
 		 */
 		start.setOnAction(e -> {
-			if (preset_flag) {
-				MineField.preset_board((int) tiles.getValue(), (int) mines.getValue());
-
+			if (presetFlag) {
+				MineField.presetBoard((int) presetTiles.getValue(), (int) presetMines.getValue());
 			} else {
-
+				MineField.presetBoard((int) presetTiles.getValue(), (int) presetMines.getValue());
 			}
 		});
 
@@ -97,32 +99,32 @@ public class Main extends Application {
 		start.setCenterShape(true);
 
 		// prefixed/preset controls
-		preset_vbox.setPadding(new Insets(0, 0, 0, 20));
+		presetVbox.setPadding(new Insets(0, 0, 0, 20));
 
-		tiles.setCenterShape(true);
-		tiles.setMajorTickUnit(10);
-		tiles.setMinorTickCount(1);
-		tiles.setShowTickMarks(true);
-		tiles.setSnapToTicks(true);
-		tiles.setShowTickLabels(true);
+		presetTiles.setCenterShape(true);
+		presetTiles.setMajorTickUnit(10);
+		presetTiles.setMinorTickCount(1);
+		presetTiles.setShowTickMarks(true);
+		presetTiles.setSnapToTicks(true);
+		presetTiles.setShowTickLabels(true);
 
-		mines.setCenterShape(true);
-		mines.setMajorTickUnit(10);
-		mines.setMinorTickCount(1);
-		mines.setShowTickMarks(true);
-		mines.setSnapToTicks(true);
-		mines.setShowTickLabels(true);
+		presetMines.setCenterShape(true);
+		presetMines.setMajorTickUnit(10);
+		presetMines.setMinorTickCount(1);
+		presetMines.setShowTickMarks(true);
+		presetMines.setSnapToTicks(true);
+		presetMines.setShowTickLabels(true);
 
-		preset_vbox.getChildren().addAll(l_tiles, tiles, l_mines, mines);
+		presetVbox.getChildren().addAll(l_tiles, presetTiles, l_mines, presetMines);
 
 		// custom controls
-		custom_vbox.setPadding(new Insets(0, 0, 0, 20));
+		customVbox.setPadding(new Insets(0, 0, 0, 20));
 
 		HBox hbox_tiles = new HBox(), hbox_mines = new HBox();
-		hbox_tiles.getChildren().addAll(c_l_tiles, c_t_tiles);
-		hbox_mines.getChildren().addAll(c_l_mines, c_t_mines);
+		hbox_tiles.getChildren().addAll(c_l_tiles, customTiles);
+		hbox_mines.getChildren().addAll(c_l_mines, customMines);
 
-		custom_vbox.getChildren().addAll(hbox_tiles, hbox_mines);
+		customVbox.getChildren().addAll(hbox_tiles, hbox_mines);
 
 		// properties of radio buttons
 		preset.setToggleGroup(group);
@@ -132,7 +134,7 @@ public class Main extends Application {
 		// adding both sets of controls into a VBox
 		VBox both = new VBox();
 		both.setPadding(new Insets(10, 0, 0, 20));
-		both.getChildren().addAll(preset, preset_vbox, new Text("\n"), custom, custom_vbox, new Text("\n"), start);
+		both.getChildren().addAll(preset, presetVbox, new Text("\n"), custom, customVbox, new Text("\n"), start);
 
 		// return statement
 		return both;
