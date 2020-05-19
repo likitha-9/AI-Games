@@ -6,6 +6,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author likitha-9
+ *
+ *         Generate an empty board (game stage) based on given dimensions.
+ *
+ */
+
 public class EmptyField {
 
 	static final int sizeOfTileWidth = 20, sizeOfTileHeight = 20; // standard size of each tile
@@ -47,10 +55,10 @@ public class EmptyField {
 		// Max number of cells able to fit vertically was 35. Horizontally. it's 50.
 		cellsX = size;
 
-		if (size <= 35)
+		if (size <= 30)
 			cellsY = size;
 		else
-			cellsY = 35;
+			cellsY = 30;
 
 		grid = new Board[cellsX][cellsY];
 
@@ -68,9 +76,9 @@ public class EmptyField {
 		Stage gameStage = new Stage();
 		Scene gameScene = new Scene(pane, fieldWidth, fieldHeight);
 		gameStage.setScene(gameScene);
+		gameStage.setMaximized(true);
 		gameStage.show();
 
 		return pane;
-
 	}
 }

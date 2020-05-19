@@ -4,6 +4,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author likit
+ *
+ *         Display error message(s) in a separate stage.
+ *
+ */
 public class ErrorMessages {
 	// display error messages if user violates any rules
 	public static void displayErrorMessages(Text text) {

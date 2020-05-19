@@ -92,9 +92,9 @@ public class Main extends Application {
 			} else {
 				/*
 				 * Writing test cases for custom data: make sure that the dimensions are within
-				 * range. The maximum dimensions that the screen could handle is 50x35. So, 50
-				 * columns is the max data that should be allowed. AND disregard any strings,
-				 * special characters, etc.
+				 * range. The maximum dimensions that the screen could (conveniently) handle is
+				 * 50x30. So, 50 columns is the max data that should be allowed. AND disregard
+				 * any strings, special characters, etc.
 				 */
 				try {
 					// Strings are parsed into ints and the above comment is implemented below.
