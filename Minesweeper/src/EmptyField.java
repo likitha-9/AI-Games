@@ -8,16 +8,15 @@ public class EmptyField {
 
 	static final int sizeOfTileWidth = 20, sizeOfTileHeight = 20; // standard size of each tile
 
-	// number of tiles = determined by custom/preset data
+	// Number of tiles = determined by preset/custom data
 	static int fieldWidth, fieldHeight;
 
-	static final int cellsX = fieldWidth / sizeOfTileWidth;
-	static final int cellsY = fieldHeight / sizeOfTileHeight;
+	static int cellsX,cellsY;
 	static Board[][] grid = new Board[cellsX][cellsY];
 
 	static class Board extends StackPane {
 
-		// each rectangle is defined as a square. A square = 1 cell in the blank canvas
+		// Each rectangle is defined as a square. A square = 1 cell in the blank canvas
 		Rectangle border = new Rectangle(sizeOfTileWidth, sizeOfTileHeight);
 
 		// This constructor is called each time a new cell has to be defined
@@ -29,15 +28,22 @@ public class EmptyField {
 			setTranslateX(x * sizeOfTileWidth);
 			setTranslateY(y * sizeOfTileHeight);
 
-			// Each cell is initially of a light blue color
-			border.setFill(Color.ALICEBLUE);
-			border.setStroke(Color.CADETBLUE);
+			// Each cell is initially white in color.
+			border.setFill(Color.WHITE);
+			border.setStroke(Color.BLACK);
 		}
 	}
 
-	public Pane createBoard() {
+	public Pane createBoard(int size, int mines) {
+
 		Pane pane = new Pane();
 		pane.setPadding(new Insets(10));
+
+		fieldWidth=sizeOfTileWidth*size;
+		fieldHeight=sizeOfTileHeight*size;
+
+		cellsX = fieldWidth / sizeOfTileWidth;
+		cellsY = fieldHeight / sizeOfTileHeight;
 
 		// Define board's dimensions
 		pane.setPrefSize(fieldWidth, fieldHeight);
@@ -51,6 +57,6 @@ public class EmptyField {
 		}
 		// Return pane filled with children
 		return pane;
-	}
 
+	}
 }
