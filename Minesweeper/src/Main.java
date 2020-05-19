@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * 
+ *
  * @author likitha-9
  *
  */
@@ -39,18 +39,17 @@ public class Main extends Application {
 	// custom controls
 	Label c_l_tiles = new Label("Specify the number of tiles:\t"),
 			c_l_mines = new Label("Specify the number of mines:\t"); // -> c_l_[a-z]+ -> c=custom, l=label
-	static TextField c_t_tiles = new TextField(), c_t_mines = new TextField(); // -> c_t_[a-z]+ -> c=custom, t=textfield
+	static TextField c_t_tiles = new TextField(), c_t_mines = new TextField(); // -> c_t_[a-z]+ -> c=custom, t=TextField
 
 	/*
 	 * JavaFX Application
 	 */
 	@Override
 	public void start(Stage mainStage) throws Exception {
-
+		Scene scene = new Scene(border, 400, 300);
 		border.setLeft(interact());
 
-		
-		Scene scene = new Scene(border, 400, 300);
+
 
 		mainStage.setTitle("Minesweeper");
 		mainStage.setScene(scene);
@@ -58,9 +57,6 @@ public class Main extends Application {
 
 	}
 
-	/**
-	 * @return
-	 */
 	public VBox interact() {
 
 		start.setCenterShape(true);
