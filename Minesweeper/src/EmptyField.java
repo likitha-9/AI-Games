@@ -1,8 +1,10 @@
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 public class EmptyField {
 
@@ -63,6 +65,11 @@ public class EmptyField {
 			}
 		}
 		// Return pane filled with children
+		Stage gameStage = new Stage();
+		Scene gameScene = new Scene(pane, fieldWidth, fieldHeight);
+		gameStage.setScene(gameScene);
+		gameStage.show();
+
 		return pane;
 
 	}
