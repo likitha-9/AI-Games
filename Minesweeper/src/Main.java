@@ -34,6 +34,8 @@ public class Main extends Application {
 	static RadioButton preset = new RadioButton("Use the sliders."), custom = new RadioButton("Enter custom data.");
 
 	// prefixed controls
+	Label l_tiles = new Label("Increase/decrease size of board."),
+			l_mines = new Label("Increase/decrease the number of mines.");// l_[a-z]+ -> l=label
 	static Slider tiles = new Slider(10, 100, 10), mines = new Slider(10, 150, 10); // prefixed tiles, mines
 	VBox preset_vbox = new VBox();
 
@@ -41,7 +43,7 @@ public class Main extends Application {
 	Label c_l_tiles = new Label("Specify the number of tiles:\t"),
 			c_l_mines = new Label("Specify the number of mines:\t"); // -> c_l_[a-z]+ -> c=custom, l=label
 	static TextField c_t_tiles = new TextField(), c_t_mines = new TextField(); // -> c_t_[a-z]+ -> c=custom, t=TextField
-	VBox custom_vbox=new VBox();
+	VBox custom_vbox = new VBox();
 
 	/*
 	 * JavaFX Application
@@ -51,12 +53,16 @@ public class Main extends Application {
 		Scene scene = new Scene(border, 400, 300);
 		border.setLeft(interact());
 
-		//when one option is selected, disable the others
-		preset.setOnMouseClicked(e->{
+		// by default, set the first option to true
+		preset_vbox.setDisable(false);
+		custom_vbox.setDisable(true);
+
+		// when one option is selected, disable the others
+		preset.setOnMouseClicked(e -> {
 			preset_vbox.setDisable(false);
 			custom_vbox.setDisable(true);
 		});
-		custom.setOnMouseClicked(e->{
+		custom.setOnMouseClicked(e -> {
 			custom_vbox.setDisable(false);
 			preset_vbox.setDisable(true);
 		});
@@ -88,8 +94,7 @@ public class Main extends Application {
 		mines.setSnapToTicks(true);
 		mines.setShowTickLabels(true);
 
-		preset_vbox.getChildren().addAll(new Text("Increase/decrease size of board."), tiles,
-				new Text("Increase/decrease number of mines."), mines);
+		preset_vbox.getChildren().addAll(l_tiles, tiles, l_mines, mines);
 
 		// custom controls
 		custom_vbox.setPadding(new Insets(0, 0, 0, 20));
@@ -104,7 +109,6 @@ public class Main extends Application {
 		preset.setToggleGroup(group);
 		preset.setSelected(true);
 		custom.setToggleGroup(group);
-		custom.setSelected(true);
 
 		// both sets of controls
 		VBox both = new VBox();
