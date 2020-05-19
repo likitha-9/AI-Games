@@ -40,7 +40,7 @@ public class Main extends Application {
 			 * l_[a-z]+ -> l=label (underscores are used
 			 * for Label identifiers ONLY)
 			 */
-	static Slider presetTiles = new Slider(10, 100, 10), presetMines = new Slider(10, 150, 10); // prefixed tiles, mines
+	static Slider presetTiles = new Slider(10, 50, 10), presetMines = new Slider(0, 500, 100); // prefixed tiles, mines
 	VBox presetVbox = new VBox();
 
 	// custom controls
@@ -83,10 +83,28 @@ public class Main extends Application {
 		 * entered their own custom data.
 		 */
 		start.setOnAction(e -> {
+			/*
+			 * Generate the minefield board (IF condition), but make sure that if custom
+			 * data is entered, it is within range.
+			 */
 			if (presetFlag) {
-				MineField.presetBoard((int) presetTiles.getValue(), (int) presetMines.getValue());
+				MineField.generateBoard((int) presetTiles.getValue(), (int) presetMines.getValue());
 			} else {
-				MineField.presetBoard((int) presetTiles.getValue(), (int) presetMines.getValue());
+				try {
+					if (Integer.parseInt(customTiles.getText()) >= 10 && Integer.parseInt(customTiles.getText()) <= 50
+							&& Integer.parseInt(customMines.getText()) >= 10
+							&& Integer.parseInt(customMines.getText()) <= 2000) {
+						MineField.generateBoard(Integer.parseInt(customTiles.getText()),
+								Integer.parseInt(customMines.getText()));
+					} else {
+						ErrorMessages.displayErrorMessages(
+								new Text("Please make sure the entered dimensions are within the prescribed range!\n"
+										+ "Number of tiles should be within 9<x<51.\n"
+										+ "Number of mines should be within 9<x<2001."));
+					}
+				} catch (NumberFormatException E) {
+					ErrorMessages.displayErrorMessages(new Text("Please make sure you input valid data!"));
+				}
 			}
 		});
 
@@ -109,7 +127,7 @@ public class Main extends Application {
 		presetTiles.setShowTickLabels(true);
 
 		presetMines.setCenterShape(true);
-		presetMines.setMajorTickUnit(10);
+		presetMines.setMajorTickUnit(50);
 		presetMines.setMinorTickCount(1);
 		presetMines.setShowTickMarks(true);
 		presetMines.setSnapToTicks(true);

@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class ErrorMessages {
 	// display error messages if user violates any rules
-	public void displayErrorMessages(Text text) {
+	public static void displayErrorMessages(Text text) {
 		// open a new stage
 		Stage errorStage = new Stage();
 		errorStage.setTitle("ERROR!");
@@ -17,7 +17,7 @@ public class ErrorMessages {
 		errorDialogBox.getChildren().addAll(text);
 
 		// add the text to scene and show the scene
-		Scene errorScene = new Scene(errorDialogBox, 350, 70);
+		Scene errorScene = new Scene(errorDialogBox, 350, 100);
 		errorStage.setScene(errorScene);
 		errorStage.show();
 	}
