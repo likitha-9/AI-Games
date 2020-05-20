@@ -39,25 +39,29 @@ public class MinesToEmptyField extends EmptyField {
 			else {
 				coords.get(randomCol).add(randomRow); // if mine isn't present, add location into list
 				placedMines += 1;
-				/*
-				 * Visibly see where the mines are located:
-				 *
-				 * EmptyField.grid[randomCol][randomRow].border
-				 * .setEffect(changeShadow(EmptyField.grid[randomCol][randomRow].border));
-				 *
-				 */
+				// Visibly see where the mines are located:
+				EmptyField.grid[randomCol][randomRow].border
+				.setEffect(changeShadow(EmptyField.grid[randomCol][randomRow].border));
+
 			}
 		}
+
+		pane = addDigits(pane);
 		return pane;
 
+	}
+
+	static Pane addDigits(Pane pane) {
+
+		return pane;
 	}
 
 	static Shadow changeShadow(Rectangle border) {
 		Shadow shadow = new Shadow();
 		shadow.setBlurType(BlurType.GAUSSIAN);
 		shadow.setColor(Color.RED);
-		shadow.setRadius(4);
-		border.setEffect(shadow);
+		shadow.setRadius(2);
+		//border.setEffect(shadow);
 		return shadow;
 	}
 
