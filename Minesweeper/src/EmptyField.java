@@ -1,5 +1,7 @@
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.Shadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -25,7 +27,6 @@ public class EmptyField {
 	static Board[][] grid;
 
 	static class Board extends StackPane {
-
 		// Each rectangle is defined as a square. A square = 1 cell in the blank canvas
 		Rectangle border = new Rectangle(sizeOfTileWidth, sizeOfTileHeight);
 
@@ -39,13 +40,21 @@ public class EmptyField {
 			setTranslateY(y * sizeOfTileHeight);
 
 			// Each cell is initially white in color.
-			border.setFill(Color.WHITE);
 			border.setStroke(Color.BLACK);
+			border.setEffect(addShadow(border));
+		}
+
+		Shadow addShadow(Rectangle border) {
+			Shadow shadow = new Shadow();
+			shadow.setBlurType(BlurType.GAUSSIAN);
+			shadow.setColor(Color.DARKBLUE);
+			shadow.setRadius(4);
+			border.setEffect(shadow);
+			return shadow;
 		}
 	}
 
 	public static Pane createBoard(int size, int mines) {
-
 		Pane pane = new Pane();
 		pane.setPadding(new Insets(10));
 
@@ -72,6 +81,7 @@ public class EmptyField {
 				pane.getChildren().add(grid[i][j]);
 			}
 		}
+
 		// Return pane filled with children
 		Stage gameStage = new Stage();
 		Scene gameScene = new Scene(pane, fieldWidth, fieldHeight);
