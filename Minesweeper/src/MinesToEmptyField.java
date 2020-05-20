@@ -33,25 +33,19 @@ public class MinesToEmptyField extends EmptyField {
 		Random rand = new Random(); // to place mines randomly
 
 		while (placedMines < mines) {
-			int randomCol = rand.nextInt(columns), randomRow = rand.nextInt(rows);// generate random column/row numbers
+			int randomCol = rand.nextInt(columns), randomRow = rand.nextInt(rows); // generate random column/row numbers
 			if (coords.get(randomCol).contains(randomRow)) // check if mine is already present: location [col][row]
 				continue; // if present, continue; placedMines+=0
 			else {
 				coords.get(randomCol).add(randomRow); // if mine isn't present, add location into list
 				placedMines += 1;
 				/*
-				 *
+				 * Visibly see where the mines are located:
 				 *
 				 * EmptyField.grid[randomCol][randomRow].border
 				 * .setEffect(changeShadow(EmptyField.grid[randomCol][randomRow].border));
 				 *
 				 */
-
-			}
-		}
-		for (int i = 0; i < columns; i++) {
-			for (int j = 0; j < rows; j++) {
-
 			}
 		}
 		return pane;
