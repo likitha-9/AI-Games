@@ -1,11 +1,15 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+//import com.sun.prism.paint.ImagePattern;
+
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.Shadow;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 /**
@@ -48,9 +52,14 @@ public class MinesToEmptyField extends EmptyField {
 				.setEffect(changeShadow(EmptyField.grid[randomCol][randomRow].border));
 				EmptyField.grid[randomCol][randomRow].border.setStroke(Color.WHITE);
 
+				Image img=new Image("1.png");
+				ImagePattern imagePattern = new ImagePattern(img);
+				ImageView imagePattern2 = new ImageView(img);
+				EmptyField.grid[10][0].border.setFill(imagePattern);
+				System.out.println(EmptyField.grid[0][0].border.getFill());
 			}
 		}
-		pane = addDigits(pane, coords);
+		//pane = addDigits(pane, coords);
 		return pane;
 
 	}
@@ -70,7 +79,9 @@ public class MinesToEmptyField extends EmptyField {
 					if (EmptyField.grid[i - 1][j - 1].border.getEffect() != shadowEffect) {
 						int digit = assignDigit(i - 1, j - 1);
 
-						EmptyField.grid[i-1][j-1]=
+						Image img=new Image("/src/digts/1.png");
+						ImagePattern imagePattern = new ImagePattern(img);
+						EmptyField.grid[i-1][j-1].border.setFill(imagePattern);
 					}
 				} catch (Exception E) {
 					// ignore
@@ -225,18 +236,43 @@ public class MinesToEmptyField extends EmptyField {
 		return count;
 	}
 
-	static int digitToImage(int digit) {
+	static ImageView digitToImage(int digit) {
 		/*
 		 * This method returns the appropriate image for each digit. Values of digit
 		 * range from 1-8.
 		 */
 		assert digit >= 1 && digit <= 8;
 
-		Image img;
-		switch(digit) {
+		ImageView img=null;
+		switch (digit) {
 		case 1:
+			img = new ImageView("/digits/1.png");
+			break;
+		case 2:
+			img = new ImageView("/digits/2.png");
+			break;
+		case 3:
+			img = new ImageView("/digits/3.png");
+			break;
+		case 4:
+			img = new ImageView("/digits/4.png");
+			break;
+		case 5:
+			img = new ImageView("/digits/5.png");
+			break;
+		case 6:
+			img = new ImageView("/digits/6.png");
+			break;
+		case 7:
+			img = new ImageView("/digits/7.png");
+			break;
+		case 8:
+			img = new ImageView("/digits/8.png");
+			break;
+		default:
+			break;
 		}
 
-		return digit;
+		return img;
 	}
 }
