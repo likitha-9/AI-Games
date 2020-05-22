@@ -57,44 +57,57 @@ public class MinesToEmptyField extends EmptyField {
 
 		for (int i = 0; i < coords.size(); i++) {
 			for (int j = 0; j < coords.get(i).size(); j++) {
+				/*
+				 * There are 8 cases. Each tile around a MINE is checked and assigned a digit,
+				 * rather than having to iterate from (0,0) to (N,N). This saves a significant
+				 * amount of time.
+				 */
 				try {
 					assignDigit(i - 1, j - 1); // top-left corner of a mine
 				} catch (Exception E) {
+					// ignore
 				}
 
 				try {
 					assignDigit(i, j - 1); // top-middle tile
 				} catch (Exception E) {
+					// ignore
 				}
 
 				try {
 					assignDigit(i + 1, j - 1); // top-right corner
 				} catch (Exception E) {
+					// ignore
 				}
 
 				try {
 					assignDigit(i - 1, j); // middle-left tile
 				} catch (Exception E) {
+					// ignore
 				}
 
 				try {
 					assignDigit(i + 1, j); // middle-right tile
 				} catch (Exception E) {
+					// ignore
 				}
 
 				try {
 					assignDigit(i - 1, j + 1); // bottom-left corner
 				} catch (Exception E) {
+					// ignore
 				}
 
 				try {
 					assignDigit(i, j + 1); // bottom-middle tile
 				} catch (Exception E) {
+					// ignore
 				}
 
 				try {
 					assignDigit(i + 1, j + 1); // bottom-right corner
 				} catch (Exception E) {
+					// ignore
 				}
 			}
 		}
