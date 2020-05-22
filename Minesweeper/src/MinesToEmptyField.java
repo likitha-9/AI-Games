@@ -47,7 +47,6 @@ public class MinesToEmptyField extends EmptyField {
 
 			}
 		}
-
 		pane = addDigits(pane, coords);
 		return pane;
 
@@ -63,49 +62,49 @@ public class MinesToEmptyField extends EmptyField {
 				 * amount of time.
 				 */
 				try {
-					assignDigit(i - 1, j - 1); // top-left corner of a mine
+					int digit = assignDigit(i - 1, j - 1); // top-left corner of a mine
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					assignDigit(i, j - 1); // top-middle tile
+					int digit = assignDigit(i, j - 1); // top-middle tile
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					assignDigit(i + 1, j - 1); // top-right corner
+					int digit = assignDigit(i + 1, j - 1); // top-right corner
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					assignDigit(i - 1, j); // middle-left tile
+					int digit = assignDigit(i - 1, j); // middle-left tile
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					assignDigit(i + 1, j); // middle-right tile
+					int digit = assignDigit(i + 1, j); // middle-right tile
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					assignDigit(i - 1, j + 1); // bottom-left corner
+					int digit = assignDigit(i - 1, j + 1); // bottom-left corner
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					assignDigit(i, j + 1); // bottom-middle tile
+					int digit = assignDigit(i, j + 1); // bottom-middle tile
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					assignDigit(i + 1, j + 1); // bottom-right corner
+					int digit = assignDigit(i + 1, j + 1); // bottom-right corner
 				} catch (Exception E) {
 					// ignore
 				}
@@ -123,5 +122,10 @@ public class MinesToEmptyField extends EmptyField {
 		return shadow;
 	}
 
-	static void assignDigit(int x, int y)
+	static int assignDigit(int x, int y) {
+		int count = 0;
+
+		return count;
+	}
+
 }
