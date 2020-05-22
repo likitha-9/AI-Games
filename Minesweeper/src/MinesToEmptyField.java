@@ -43,6 +43,7 @@ public class MinesToEmptyField extends EmptyField {
 				// Visibly see where the mines are located:
 				EmptyField.grid[randomCol][randomRow].border
 				.setEffect(changeShadow(EmptyField.grid[randomCol][randomRow].border));
+				EmptyField.grid[randomCol][randomRow].border.setStroke(Color.WHITE);
 
 			}
 		}
@@ -53,9 +54,48 @@ public class MinesToEmptyField extends EmptyField {
 	}
 
 	static Pane addDigits(Pane pane, ArrayList<ArrayList<Integer>> coords) {
+
 		for (int i = 0; i < coords.size(); i++) {
 			for (int j = 0; j < coords.get(i).size(); j++) {
-				//if
+				try {
+					assignDigit(i - 1, j - 1); // top-left corner of a mine
+				} catch (Exception E) {
+				}
+
+				try {
+					assignDigit(i, j - 1); // top-middle tile
+				} catch (Exception E) {
+				}
+
+				try {
+					assignDigit(i + 1, j - 1); // top-right corner
+				} catch (Exception E) {
+				}
+
+				try {
+					assignDigit(i - 1, j); // middle-left tile
+				} catch (Exception E) {
+				}
+
+				try {
+					assignDigit(i + 1, j); // middle-right tile
+				} catch (Exception E) {
+				}
+
+				try {
+					assignDigit(i - 1, j + 1); // bottom-left corner
+				} catch (Exception E) {
+				}
+
+				try {
+					assignDigit(i, j + 1); // bottom-middle tile
+				} catch (Exception E) {
+				}
+
+				try {
+					assignDigit(i + 1, j + 1); // bottom-right corner
+				} catch (Exception E) {
+				}
 			}
 		}
 		return pane;
@@ -70,4 +110,5 @@ public class MinesToEmptyField extends EmptyField {
 		return shadow;
 	}
 
+	static void assignDigit(int x, int y)
 }
