@@ -124,6 +124,61 @@ public class MinesToEmptyField extends EmptyField {
 
 	static int assignDigit(int x, int y) {
 		int count = 0;
+		try {
+			if (EmptyField.grid[x - 1][y - 1].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) {
+			// ignore
+		}
+
+		try {
+			if (EmptyField.grid[x][y - 1].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) {
+			// ignore
+		}
+
+		try {
+			if (EmptyField.grid[x + 1][y - 1].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) {
+			// ignore
+		}
+
+		try {
+			if (EmptyField.grid[x - 1][y].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) {
+			// ignore
+		}
+
+		try {
+			if (EmptyField.grid[x + 1][y].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) {
+			// ignore
+		}
+
+		try {
+			if (EmptyField.grid[x - 1][y + 1].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) {
+			// ignore
+		}
+
+		try {
+			if (EmptyField.grid[x][y + 1].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) {
+			// ignore
+		}
+
+		try {
+			if (EmptyField.grid[x + 1][y + 1].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) {
+			// ignore
+		}
 
 		return count;
 	}
