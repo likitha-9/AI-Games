@@ -17,6 +17,8 @@ import javafx.scene.shape.Rectangle;
  */
 public class MinesToEmptyField extends EmptyField {
 
+	static Shadow shadowEffect = changeShadow(new Rectangle());
+
 	// static int layout[][]=new int[][]
 	public static Pane addMines(Pane pane, int mines) {
 
@@ -62,55 +64,72 @@ public class MinesToEmptyField extends EmptyField {
 				 * amount of time.
 				 */
 				try {
-					int digit = assignDigit(i - 1, j - 1); // top-left corner of a mine
+					if (EmptyField.grid[i - 1][j - 1].border.getEffect() != shadowEffect) {
+						int digit = assignDigit(i - 1, j - 1); // top-left corner of a mine
+					}
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					int digit = assignDigit(i, j - 1); // top-middle tile
+					if (EmptyField.grid[i][j - 1].border.getEffect() != shadowEffect) {
+						int digit = assignDigit(i, j - 1); // top-middle tile
+					}
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					int digit = assignDigit(i + 1, j - 1); // top-right corner
+					if (EmptyField.grid[i + 1][j - 1].border.getEffect() != shadowEffect) {
+						int digit = assignDigit(i + 1, j - 1); // top-right corner
+					}
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					int digit = assignDigit(i - 1, j); // middle-left tile
+					if (EmptyField.grid[i - 1][j].border.getEffect() != shadowEffect) {
+						int digit = assignDigit(i - 1, j); // middle-left tile
+					}
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					int digit = assignDigit(i + 1, j); // middle-right tile
+					if (EmptyField.grid[i + 1][j - 1].border.getEffect() != shadowEffect) {
+						int digit = assignDigit(i + 1, j - 1); // middle-right tile
+					}
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					int digit = assignDigit(i - 1, j + 1); // bottom-left corner
+					if (EmptyField.grid[i - 1][j + 1].border.getEffect() != shadowEffect) {
+						int digit = assignDigit(i - 1, j + 1); // bottom-left corner
+					}
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					int digit = assignDigit(i, j + 1); // bottom-middle tile
+					if (EmptyField.grid[i][j + 1].border.getEffect() != shadowEffect) {
+						int digit = assignDigit(i, j + 1); // bottom-middle tile
+					}
 				} catch (Exception E) {
 					// ignore
 				}
 
 				try {
-					int digit = assignDigit(i + 1, j + 1); // bottom-right corner
+					if (EmptyField.grid[i + 1][j + 1].border.getEffect() != shadowEffect) {
+						int digit = assignDigit(i + 1, j + 1); // bottom-right corner
+					}
 				} catch (Exception E) {
 					// ignore
 				}
 			}
 		}
 		return pane;
+
 	}
 
 	static Shadow changeShadow(Rectangle border) {
