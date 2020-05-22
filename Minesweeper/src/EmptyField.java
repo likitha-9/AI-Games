@@ -41,7 +41,8 @@ public class EmptyField {
 
 			// Each cell is initially white in color.
 			border.setStroke(Color.BLACK);
-			border.setEffect(addShadow(border));
+			//border.setEffect(addShadow(border));
+			border.setFill(Color.AQUA);
 		}
 
 		Shadow addShadow(Rectangle border) {
@@ -49,7 +50,7 @@ public class EmptyField {
 			shadow.setBlurType(BlurType.GAUSSIAN);
 			shadow.setColor(Color.DARKBLUE);
 			shadow.setRadius(4);
-			border.setEffect(shadow);
+			//border.setEffect(shadow);
 			return shadow;
 		}
 	}
