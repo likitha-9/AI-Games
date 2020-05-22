@@ -32,6 +32,8 @@ public class MinesToEmptyField extends EmptyField {
 
 		// Keep track of where mines are being added.
 		ArrayList<ArrayList<Integer>> coords = new ArrayList<>();
+		ArrayList<Integer> listOfRandomCols = new ArrayList<Integer>();
+
 		for (int i = 0; i < columns; i++)
 			coords.add(new ArrayList<Integer>());
 
@@ -41,6 +43,7 @@ public class MinesToEmptyField extends EmptyField {
 
 		while (placedMines < mines) {
 			int randomCol = rand.nextInt(columns), randomRow = rand.nextInt(rows); // generate random column/row numbers
+			listOfRandomCols.add(randomCol);
 			if (coords.get(randomCol).contains(randomRow)) // check if mine is already present: location [col][row]
 				continue; // if present, continue; placedMines+=0
 			else {
@@ -52,36 +55,51 @@ public class MinesToEmptyField extends EmptyField {
 				.setEffect(changeShadow(EmptyField.grid[randomCol][randomRow].border));
 				EmptyField.grid[randomCol][randomRow].border.setStroke(Color.WHITE);
 
-				Image img=new Image("1.png");
-				ImagePattern imagePattern = new ImagePattern(img);
-				ImageView imagePattern2 = new ImageView(img);
-				EmptyField.grid[10][0].border.setFill(imagePattern);
-				System.out.println(EmptyField.grid[0][0].border.getFill());
+				/*
+				 * Image img=new Image("1.png"); ImagePattern imagePattern = new
+				 * ImagePattern(img); ImageView imagePattern2 = new ImageView(img);
+				 * EmptyField.grid[10][0].border.setFill(imagePattern);
+				 * System.out.println(EmptyField.grid[0][0].border.getFill());
+				 */
 			}
 		}
-		//pane = addDigits(pane, coords);
+		pane = addDigits(pane, coords, listOfRandomCols);
 		return pane;
 
 	}
 
-	static Pane addDigits(Pane pane, ArrayList<ArrayList<Integer>> coords) {
+	static Pane addDigits(Pane pane, ArrayList<ArrayList<Integer>> coords, ArrayList<Integer> randomCols) {
 
-		for (int i = 0; i < coords.size(); i++) {
-			for (int j = 0; j < coords.get(i).size(); j++) {
+		for (int i = 0; i < randomCols.size(); i++) {
+			System.out.println("\n");
+			for (int j = 0; j < coords.get(randomCols.get(i)).size(); j++) {
 				/*
 				 * There are 8 cases. Each tile around a MINE is checked and assigned a digit,
 				 * rather than having to iterate from (0,0) to (N,N). This saves a significant
 				 * amount of time.
 				 */
 
-				// top-left corner of a mine
-				try {
-					if (EmptyField.grid[i - 1][j - 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i - 1, j - 1);
+				System.out.println(randomCols.get(i) + " " + coords.get(randomCols.get(i)).get(j));
 
-						Image img=new Image("/src/digts/1.png");
+				// top-left corner of a mine
+
+				try {
+					if (EmptyField.grid[randomCols.get(i) - 1][coords.get(randomCols.get(i)).get(j) - 1].border
+							.getEffect() != shadowEffect) {
+
+						System.out.println("FALSE");
+
+						int digit = assignDigit(randomCols.get(i) - 1, coords.get(randomCols.get(i)).get(j) - 1);
+
+						Image img = new Image("1.png");
 						ImagePattern imagePattern = new ImagePattern(img);
-						EmptyField.grid[i-1][j-1].border.setFill(imagePattern);
+						EmptyField.grid[randomCols.get(i) - 1][coords.get(randomCols.get(i)).get(j) - 1].border
+						.setFill(imagePattern);
+
+						System.out.println(
+								EmptyField.grid[randomCols.get(i) - 1][coords.get(randomCols.get(i)).get(j) - 1].border
+								.getFill().getClass() == ImagePattern.class);
+
 					}
 				} catch (Exception E) {
 					// ignore
@@ -243,7 +261,7 @@ public class MinesToEmptyField extends EmptyField {
 		 */
 		assert digit >= 1 && digit <= 8;
 
-		ImageView img=null;
+		ImageView img = null;
 		switch (digit) {
 		case 1:
 			img = new ImageView("/digits/1.png");
