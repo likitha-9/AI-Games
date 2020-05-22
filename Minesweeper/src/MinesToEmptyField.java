@@ -142,6 +142,11 @@ public class MinesToEmptyField extends EmptyField {
 	}
 
 	static Shadow changeShadow(Rectangle border) {
+		/*
+		 * Mines are randomly placed. To distinguish a mine from a normal tile, a
+		 * "shadow" effect is added. Blue tiles are normal ones while red tiles are
+		 * mines.
+		 */
 		Shadow shadow = new Shadow();
 		shadow.setBlurType(BlurType.GAUSSIAN);
 		shadow.setColor(Color.RED);
@@ -151,6 +156,12 @@ public class MinesToEmptyField extends EmptyField {
 	}
 
 	static int assignDigit(int x, int y) {
+		/*
+		 * This method is called by addDigits(). addDigits() passes the address
+		 * (coordinates; not literal address) of a TILE, and this method counts the
+		 * number of mines surrounding THAT tile. The code looks somewhat similar, but
+		 * addDigits() and assignDigit() are checking for separate things.
+		 */
 		int count = 0;
 		try {
 			if (EmptyField.grid[x - 1][y - 1].border.getStroke() == Color.WHITE)
