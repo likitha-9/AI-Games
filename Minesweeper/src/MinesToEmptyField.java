@@ -3,6 +3,7 @@ import java.util.Random;
 
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.Shadow;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -68,6 +69,8 @@ public class MinesToEmptyField extends EmptyField {
 				try {
 					if (EmptyField.grid[i - 1][j - 1].border.getEffect() != shadowEffect) {
 						int digit = assignDigit(i - 1, j - 1);
+
+						EmptyField.grid[i-1][j-1]=
 					}
 				} catch (Exception E) {
 					// ignore
@@ -222,4 +225,18 @@ public class MinesToEmptyField extends EmptyField {
 		return count;
 	}
 
+	static int digitToImage(int digit) {
+		/*
+		 * This method returns the appropriate image for each digit. Values of digit
+		 * range from 1-8.
+		 */
+		assert digit >= 1 && digit <= 8;
+
+		Image img;
+		switch(digit) {
+		case 1:
+		}
+
+		return digit;
+	}
 }
