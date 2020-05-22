@@ -63,65 +63,74 @@ public class MinesToEmptyField extends EmptyField {
 				 * rather than having to iterate from (0,0) to (N,N). This saves a significant
 				 * amount of time.
 				 */
+
+				// top-left corner of a mine
 				try {
 					if (EmptyField.grid[i - 1][j - 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i - 1, j - 1); // top-left corner of a mine
+						int digit = assignDigit(i - 1, j - 1);
 					}
 				} catch (Exception E) {
 					// ignore
 				}
 
+				// top-middle tile
 				try {
 					if (EmptyField.grid[i][j - 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i, j - 1); // top-middle tile
+						int digit = assignDigit(i, j - 1);
 					}
 				} catch (Exception E) {
 					// ignore
 				}
 
+				// top-right corner
 				try {
 					if (EmptyField.grid[i + 1][j - 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i + 1, j - 1); // top-right corner
+						int digit = assignDigit(i + 1, j - 1);
 					}
 				} catch (Exception E) {
 					// ignore
 				}
 
+				// middle-left tile
 				try {
 					if (EmptyField.grid[i - 1][j].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i - 1, j); // middle-left tile
+						int digit = assignDigit(i - 1, j);
 					}
 				} catch (Exception E) {
 					// ignore
 				}
 
+				// middle-right tile
 				try {
 					if (EmptyField.grid[i + 1][j - 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i + 1, j - 1); // middle-right tile
+						int digit = assignDigit(i + 1, j - 1);
 					}
 				} catch (Exception E) {
 					// ignore
 				}
 
+				// bottom-left corner
 				try {
 					if (EmptyField.grid[i - 1][j + 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i - 1, j + 1); // bottom-left corner
+						int digit = assignDigit(i - 1, j + 1);
 					}
 				} catch (Exception E) {
 					// ignore
 				}
 
+				// bottom-middle tile
 				try {
 					if (EmptyField.grid[i][j + 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i, j + 1); // bottom-middle tile
+						int digit = assignDigit(i, j + 1);
 					}
 				} catch (Exception E) {
 					// ignore
 				}
 
+				// bottom-right corner
 				try {
 					if (EmptyField.grid[i + 1][j + 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i + 1, j + 1); // bottom-right corner
+						int digit = assignDigit(i + 1, j + 1);
 					}
 				} catch (Exception E) {
 					// ignore
