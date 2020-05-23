@@ -172,17 +172,17 @@ public class MinesToEmptyField extends EmptyField {
 
 				// middle-right tile
 				try {
-					if (EmptyField.grid[i + 1][j - 1].border.getEffect() != shadowEffect) {
-						if (EmptyField.grid[i + 1][j - 1].border.getEffect() != shadowEffect) {
-							if (EmptyField.grid[randomCols.get(i) + 1][coords.get(randomCols.get(i)).get(j) - 1].border
+					if (EmptyField.grid[i + 1][j ].border.getEffect() != shadowEffect) {
+						if (EmptyField.grid[i + 1][j ].border.getEffect() != shadowEffect) {
+							if (EmptyField.grid[randomCols.get(i) + 1][coords.get(randomCols.get(i)).get(j) ].border
 									.getEffect() != shadowEffect) {
 
 								int digit = assignDigit(randomCols.get(i) + 1,
-										coords.get(randomCols.get(i)).get(j) - 1);
+										coords.get(randomCols.get(i)).get(j) );
 
 								Image img = new Image(Integer.valueOf(digit).toString() + ".png");
 								ImagePattern imagePattern = new ImagePattern(img);
-								EmptyField.grid[randomCols.get(i) + 1][coords.get(randomCols.get(i)).get(j) - 1].border
+								EmptyField.grid[randomCols.get(i) + 1][coords.get(randomCols.get(i)).get(j) ].border
 								.setFill(imagePattern);
 
 							}
