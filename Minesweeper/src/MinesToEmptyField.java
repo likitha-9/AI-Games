@@ -5,11 +5,9 @@ import java.util.Random;
 
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.Shadow;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 /**
@@ -79,7 +77,7 @@ public class MinesToEmptyField extends EmptyField {
 				 * amount of time.
 				 */
 
-				System.out.println(randomCols.get(i) + " " + coords.get(randomCols.get(i)).get(j));
+				/**				System.out.println(randomCols.get(i) + " " + coords.get(randomCols.get(i)).get(j));
 
 				// top-left corner of a mine
 
@@ -260,7 +258,8 @@ public class MinesToEmptyField extends EmptyField {
 				} catch (Exception E) {
 					// ignore
 				}
-			}
+
+				 */			}
 		}
 		return pane;
 
