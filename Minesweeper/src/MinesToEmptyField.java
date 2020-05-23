@@ -128,7 +128,21 @@ public class MinesToEmptyField extends EmptyField {
 				// top-right corner
 				try {
 					if (EmptyField.grid[i + 1][j - 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i + 1, j - 1);
+						if (EmptyField.grid[i + 1][j - 1].border.getEffect() != shadowEffect) {
+							if (EmptyField.grid[randomCols.get(i)][coords.get(randomCols.get(i)).get(j) - 1].border
+									.getEffect() != shadowEffect) {
+
+								int digit = assignDigit(randomCols.get(i) + 1,
+										coords.get(randomCols.get(i)).get(j) - 1);
+
+								Image img = new Image(Integer.valueOf(digit).toString() + ".png");
+								ImagePattern imagePattern = new ImagePattern(img);
+								EmptyField.grid[randomCols.get(i) + 1][coords.get(randomCols.get(i)).get(j) - 1].border
+								.setFill(imagePattern);
+
+							}
+
+						}
 					}
 				} catch (Exception E) {
 					// ignore
@@ -137,7 +151,20 @@ public class MinesToEmptyField extends EmptyField {
 				// middle-left tile
 				try {
 					if (EmptyField.grid[i - 1][j].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i - 1, j);
+						if (EmptyField.grid[i - 1][j].border.getEffect() != shadowEffect) {
+							if (EmptyField.grid[randomCols.get(i) - 1][coords.get(randomCols.get(i)).get(j)].border
+									.getEffect() != shadowEffect) {
+
+								int digit = assignDigit(randomCols.get(i) - 1, coords.get(randomCols.get(i)).get(j));
+
+								Image img = new Image(Integer.valueOf(digit).toString() + ".png");
+								ImagePattern imagePattern = new ImagePattern(img);
+								EmptyField.grid[randomCols.get(i) - 1][coords.get(randomCols.get(i)).get(j)].border
+								.setFill(imagePattern);
+
+							}
+
+						}
 					}
 				} catch (Exception E) {
 					// ignore
@@ -146,7 +173,21 @@ public class MinesToEmptyField extends EmptyField {
 				// middle-right tile
 				try {
 					if (EmptyField.grid[i + 1][j - 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i + 1, j - 1);
+						if (EmptyField.grid[i + 1][j - 1].border.getEffect() != shadowEffect) {
+							if (EmptyField.grid[randomCols.get(i) + 1][coords.get(randomCols.get(i)).get(j) - 1].border
+									.getEffect() != shadowEffect) {
+
+								int digit = assignDigit(randomCols.get(i) + 1,
+										coords.get(randomCols.get(i)).get(j) - 1);
+
+								Image img = new Image(Integer.valueOf(digit).toString() + ".png");
+								ImagePattern imagePattern = new ImagePattern(img);
+								EmptyField.grid[randomCols.get(i) + 1][coords.get(randomCols.get(i)).get(j) - 1].border
+								.setFill(imagePattern);
+
+							}
+
+						}
 					}
 				} catch (Exception E) {
 					// ignore
@@ -155,7 +196,21 @@ public class MinesToEmptyField extends EmptyField {
 				// bottom-left corner
 				try {
 					if (EmptyField.grid[i - 1][j + 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i - 1, j + 1);
+						if (EmptyField.grid[i - 1][j + 1].border.getEffect() != shadowEffect) {
+							if (EmptyField.grid[randomCols.get(i) - 1][coords.get(randomCols.get(i)).get(j) + 1].border
+									.getEffect() != shadowEffect) {
+
+								int digit = assignDigit(randomCols.get(i) - 1,
+										coords.get(randomCols.get(i)).get(j) + 1);
+
+								Image img = new Image(Integer.valueOf(digit).toString() + ".png");
+								ImagePattern imagePattern = new ImagePattern(img);
+								EmptyField.grid[randomCols.get(i) - 1][coords.get(randomCols.get(i)).get(j) + 1].border
+								.setFill(imagePattern);
+
+							}
+
+						}
 					}
 				} catch (Exception E) {
 					// ignore
@@ -164,7 +219,20 @@ public class MinesToEmptyField extends EmptyField {
 				// bottom-middle tile
 				try {
 					if (EmptyField.grid[i][j + 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i, j + 1);
+						if (EmptyField.grid[i][j + 1].border.getEffect() != shadowEffect) {
+							if (EmptyField.grid[randomCols.get(i)][coords.get(randomCols.get(i)).get(j) + 1].border
+									.getEffect() != shadowEffect) {
+
+								int digit = assignDigit(randomCols.get(i), coords.get(randomCols.get(i)).get(j) + 1);
+
+								Image img = new Image(Integer.valueOf(digit).toString() + ".png");
+								ImagePattern imagePattern = new ImagePattern(img);
+								EmptyField.grid[randomCols.get(i)][coords.get(randomCols.get(i)).get(j) + 1].border
+								.setFill(imagePattern);
+
+							}
+
+						}
 					}
 				} catch (Exception E) {
 					// ignore
@@ -173,7 +241,21 @@ public class MinesToEmptyField extends EmptyField {
 				// bottom-right corner
 				try {
 					if (EmptyField.grid[i + 1][j + 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i + 1, j + 1);
+						if (EmptyField.grid[i + 1][j + 1].border.getEffect() != shadowEffect) {
+							if (EmptyField.grid[randomCols.get(i) + 1][coords.get(randomCols.get(i)).get(j) + 1].border
+									.getEffect() != shadowEffect) {
+
+								int digit = assignDigit(randomCols.get(i) + 1,
+										coords.get(randomCols.get(i)).get(j) + 1);
+
+								Image img = new Image(Integer.valueOf(digit).toString() + ".png");
+								ImagePattern imagePattern = new ImagePattern(img);
+								EmptyField.grid[randomCols.get(i) + 1][coords.get(randomCols.get(i)).get(j) + 1].border
+								.setFill(imagePattern);
+
+							}
+
+						}
 					}
 				} catch (Exception E) {
 					// ignore
