@@ -91,14 +91,14 @@ public class MinesToEmptyField extends EmptyField {
 
 						int digit = assignDigit(randomCols.get(i) - 1, coords.get(randomCols.get(i)).get(j) - 1);
 
-						Image img = new Image("1.png");
+						Image img = new Image(Integer.valueOf(digit).toString() + ".png");
 						ImagePattern imagePattern = new ImagePattern(img);
 						EmptyField.grid[randomCols.get(i) - 1][coords.get(randomCols.get(i)).get(j) - 1].border
 						.setFill(imagePattern);
 
-						System.out.println(
-								EmptyField.grid[randomCols.get(i) - 1][coords.get(randomCols.get(i)).get(j) - 1].border
-								.getFill().getClass() == ImagePattern.class);
+						// System.out.println(EmptyField.grid[randomCols.get(i) -
+						// 1][coords.get(randomCols.get(i)).get(j) - 1].border.getFill().getClass() ==
+						// ImagePattern.class);
 
 					}
 				} catch (Exception E) {
