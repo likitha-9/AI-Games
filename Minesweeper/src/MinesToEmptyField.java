@@ -87,7 +87,7 @@ public class MinesToEmptyField extends EmptyField {
 					if (EmptyField.grid[randomCols.get(i) - 1][coords.get(randomCols.get(i)).get(j) - 1].border
 							.getEffect() != shadowEffect) {
 
-						System.out.println("FALSE");
+						// System.out.println("FALSE");
 
 						int digit = assignDigit(randomCols.get(i) - 1, coords.get(randomCols.get(i)).get(j) - 1);
 
@@ -108,7 +108,18 @@ public class MinesToEmptyField extends EmptyField {
 				// top-middle tile
 				try {
 					if (EmptyField.grid[i][j - 1].border.getEffect() != shadowEffect) {
-						int digit = assignDigit(i, j - 1);
+						if (EmptyField.grid[randomCols.get(i)][coords.get(randomCols.get(i)).get(j) - 1].border
+								.getEffect() != shadowEffect) {
+
+							int digit = assignDigit(randomCols.get(i), coords.get(randomCols.get(i)).get(j) - 1);
+
+							Image img = new Image(Integer.valueOf(digit).toString() + ".png");
+							ImagePattern imagePattern = new ImagePattern(img);
+							EmptyField.grid[randomCols.get(i)][coords.get(randomCols.get(i)).get(j) - 1].border
+							.setFill(imagePattern);
+
+						}
+
 					}
 				} catch (Exception E) {
 					// ignore
