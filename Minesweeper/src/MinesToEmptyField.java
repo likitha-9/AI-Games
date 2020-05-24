@@ -97,13 +97,13 @@ public class MinesToEmptyField extends EmptyField {
 		return shadow;
 	}
 
-	static int assignDigit(int x, int y) {
-		/*
-		 * This method is called by addDigits(). addDigits() passes the address
-		 * (coordinates; not literal address) of a TILE, and this method counts the
-		 * number of mines surrounding THAT tile. The code looks somewhat similar, but
-		 * addDigits() and assignDigit() are checking for separate things.
-		 */
+	/*static int assignDigit(int x, int y) {
+
+	 * This method is called by addDigits(). addDigits() passes the address
+	 * (coordinates; not literal address) of a TILE, and this method counts the
+	 * number of mines surrounding THAT tile. The code looks somewhat similar, but
+	 * addDigits() and assignDigit() are checking for separate things.
+
 		int count = 0;
 		try {
 			if (EmptyField.grid[x - 1][y - 1].border.getStroke() == Color.WHITE)
@@ -163,7 +163,7 @@ public class MinesToEmptyField extends EmptyField {
 
 		return count;
 	}
-
+	 */
 	static ImageView digitToImage(int digit) {
 		/*
 		 * This method returns the appropriate image for each digit. Values of digit
