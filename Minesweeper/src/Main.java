@@ -22,6 +22,8 @@ import javafx.stage.Stage;
  *         2. Create the board according to the data given. (Otherwise, display
  *         error messages - ErrorMessages.java)
  *
+ *         3. Enable event handling.
+ *
  *
  *
  */
