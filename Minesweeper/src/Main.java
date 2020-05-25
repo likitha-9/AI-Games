@@ -17,6 +17,9 @@ import javafx.stage.Stage;
  *
  * @author likitha-9
  *
+ *         1. Ask user to indicate dimensions of board and number of mines.
+ *
+ *
  */
 
 public class Main extends Application {
