@@ -1,4 +1,11 @@
-
+/**
+ *
+ *
+ * @author likit
+ *
+ * Extra code
+ *
+ */
 public class _EXTRA_CODE_ {
 	/**				System.out.println(randomCols.get(i) + " " + coords.get(randomCols.get(i)).get(j));
 
