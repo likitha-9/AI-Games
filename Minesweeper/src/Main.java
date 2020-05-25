@@ -24,6 +24,8 @@ import javafx.stage.Stage;
  *
  *         3. Enable event handling.
  *
+ *         4. Enable extra features, such as timer, mine shape selection, and music. ☺
+ *
  *
  *
  */
