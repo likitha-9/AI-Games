@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author likit
+ * @author likitha-9
  *
  *         Display error message(s) in a separate stage.
  *
