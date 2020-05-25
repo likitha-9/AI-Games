@@ -19,6 +19,10 @@ import javafx.stage.Stage;
  *
  *         1. Ask user to indicate dimensions of board and number of mines.
  *
+ *         2. Create the board according to the data given. (Otherwise, display
+ *         error messages - ErrorMessages.java)
+ *
+ *
  *
  */
 
