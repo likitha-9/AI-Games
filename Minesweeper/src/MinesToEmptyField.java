@@ -17,6 +17,10 @@ import javafx.scene.shape.Rectangle;
  *         Given an empty mine field, add mines randomly. Extract this number
  *         from either preset data or custom data.
  *
+ *         Then, figure out how many mines are around a particular tile. Number
+ *         of mines will range from 0-8. 0 will be indicated by emptiness, while
+ *         1-8 will have a certain digit.
+ *
  */
 public class MinesToEmptyField extends EmptyField {
 
@@ -97,72 +101,39 @@ public class MinesToEmptyField extends EmptyField {
 		return shadow;
 	}
 
-	/*static int assignDigit(int x, int y) {
-
+	/*
+	 * static int assignDigit(int x, int y) {
+	 *
 	 * This method is called by addDigits(). addDigits() passes the address
 	 * (coordinates; not literal address) of a TILE, and this method counts the
 	 * number of mines surrounding THAT tile. The code looks somewhat similar, but
 	 * addDigits() and assignDigit() are checking for separate things.
-
-		int count = 0;
-		try {
-			if (EmptyField.grid[x - 1][y - 1].border.getStroke() == Color.WHITE)
-				count++;
-		} catch (Exception E) {
-			// ignore
-		}
-
-		try {
-			if (EmptyField.grid[x][y - 1].border.getStroke() == Color.WHITE)
-				count++;
-		} catch (Exception E) {
-			// ignore
-		}
-
-		try {
-			if (EmptyField.grid[x + 1][y - 1].border.getStroke() == Color.WHITE)
-				count++;
-		} catch (Exception E) {
-			// ignore
-		}
-
-		try {
-			if (EmptyField.grid[x - 1][y].border.getStroke() == Color.WHITE)
-				count++;
-		} catch (Exception E) {
-			// ignore
-		}
-
-		try {
-			if (EmptyField.grid[x + 1][y].border.getStroke() == Color.WHITE)
-				count++;
-		} catch (Exception E) {
-			// ignore
-		}
-
-		try {
-			if (EmptyField.grid[x - 1][y + 1].border.getStroke() == Color.WHITE)
-				count++;
-		} catch (Exception E) {
-			// ignore
-		}
-
-		try {
-			if (EmptyField.grid[x][y + 1].border.getStroke() == Color.WHITE)
-				count++;
-		} catch (Exception E) {
-			// ignore
-		}
-
-		try {
-			if (EmptyField.grid[x + 1][y + 1].border.getStroke() == Color.WHITE)
-				count++;
-		} catch (Exception E) {
-			// ignore
-		}
-
-		return count;
-	}
+	 *
+	 * int count = 0; try { if (EmptyField.grid[x - 1][y - 1].border.getStroke() ==
+	 * Color.WHITE) count++; } catch (Exception E) { // ignore }
+	 *
+	 * try { if (EmptyField.grid[x][y - 1].border.getStroke() == Color.WHITE)
+	 * count++; } catch (Exception E) { // ignore }
+	 *
+	 * try { if (EmptyField.grid[x + 1][y - 1].border.getStroke() == Color.WHITE)
+	 * count++; } catch (Exception E) { // ignore }
+	 *
+	 * try { if (EmptyField.grid[x - 1][y].border.getStroke() == Color.WHITE)
+	 * count++; } catch (Exception E) { // ignore }
+	 *
+	 * try { if (EmptyField.grid[x + 1][y].border.getStroke() == Color.WHITE)
+	 * count++; } catch (Exception E) { // ignore }
+	 *
+	 * try { if (EmptyField.grid[x - 1][y + 1].border.getStroke() == Color.WHITE)
+	 * count++; } catch (Exception E) { // ignore }
+	 *
+	 * try { if (EmptyField.grid[x][y + 1].border.getStroke() == Color.WHITE)
+	 * count++; } catch (Exception E) { // ignore }
+	 *
+	 * try { if (EmptyField.grid[x + 1][y + 1].border.getStroke() == Color.WHITE)
+	 * count++; } catch (Exception E) { // ignore }
+	 *
+	 * return count; }
 	 */
 	static ImageView digitToImage(int digit) {
 		/*
