@@ -29,7 +29,7 @@ public class MinesToEmptyField extends EmptyField {
 	// static int layout[][]=new int[][]
 	public static Pane addMines(Pane pane, int mines) {
 
-		// The board reads in grid[column_number][row_number] format.
+		// The board reads in grid[column_numbe r][row_number] format.
 		int columns = EmptyField.grid.length, rows = EmptyField.grid[0].length;
 
 		// Keep track of where mines are being added.
@@ -80,6 +80,7 @@ public class MinesToEmptyField extends EmptyField {
 				 * rather than having to iterate from (0,0) to (N,N). This saves a significant
 				 * amount of time.
 				 */
+
 
 			}
 		}
@@ -175,3 +176,5 @@ public class MinesToEmptyField extends EmptyField {
 		return img;
 	}
 }
+
+/**/
