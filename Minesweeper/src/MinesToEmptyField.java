@@ -80,7 +80,7 @@ public class MinesToEmptyField extends EmptyField {
 				 * rather than having to iterate from (0,0) to (N,N). This saves a significant
 				 * amount of time.
 				 */
-
+				int count = 0; // Initially, count=0
 
 			}
 		}
@@ -102,40 +102,70 @@ public class MinesToEmptyField extends EmptyField {
 		return shadow;
 	}
 
-	/*
-	 * static int assignDigit(int x, int y) {
-	 *
-	 * This method is called by addDigits(). addDigits() passes the address
-	 * (coordinates; not literal address) of a TILE, and this method counts the
-	 * number of mines surrounding THAT tile. The code looks somewhat similar, but
-	 * addDigits() and assignDigit() are checking for separate things.
-	 *
-	 * int count = 0; try { if (EmptyField.grid[x - 1][y - 1].border.getStroke() ==
-	 * Color.WHITE) count++; } catch (Exception E) { // ignore }
-	 *
-	 * try { if (EmptyField.grid[x][y - 1].border.getStroke() == Color.WHITE)
-	 * count++; } catch (Exception E) { // ignore }
-	 *
-	 * try { if (EmptyField.grid[x + 1][y - 1].border.getStroke() == Color.WHITE)
-	 * count++; } catch (Exception E) { // ignore }
-	 *
-	 * try { if (EmptyField.grid[x - 1][y].border.getStroke() == Color.WHITE)
-	 * count++; } catch (Exception E) { // ignore }
-	 *
-	 * try { if (EmptyField.grid[x + 1][y].border.getStroke() == Color.WHITE)
-	 * count++; } catch (Exception E) { // ignore }
-	 *
-	 * try { if (EmptyField.grid[x - 1][y + 1].border.getStroke() == Color.WHITE)
-	 * count++; } catch (Exception E) { // ignore }
-	 *
-	 * try { if (EmptyField.grid[x][y + 1].border.getStroke() == Color.WHITE)
-	 * count++; } catch (Exception E) { // ignore }
-	 *
-	 * try { if (EmptyField.grid[x + 1][y + 1].border.getStroke() == Color.WHITE)
-	 * count++; } catch (Exception E) { // ignore }
-	 *
-	 * return count; }
-	 */
+	static int assignDigit(int x, int y) {
+
+		/*
+		 * This method is called by addDigits(). addDigits() passes the address
+		 * (coordinates; not literal address) of a TILE, and this method counts the
+		 * number of mines surrounding THAT tile. The code looks somewhat similar, but
+		 * addDigits() and assignDigit() are checking for separate things.
+		 */
+
+		int count = 0;
+		try {
+			if (EmptyField.grid[x - 1][y - 1].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) { // ignore
+
+		}
+
+		try {
+			if (EmptyField.grid[x][y - 1].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) { // ignore
+		}
+
+		try {
+			if (EmptyField.grid[x + 1][y - 1].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) { // ignore
+		}
+
+		try {
+			if (EmptyField.grid[x - 1][y].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) { // ignore
+		}
+
+		try {
+			if (EmptyField.grid[x + 1][y].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) { // ignore
+		}
+
+		try {
+			if (EmptyField.grid[x - 1][y + 1].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) { // ignore
+		}
+
+		try {
+			if (EmptyField.grid[x][y + 1].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) { // ignore
+
+		}
+
+		try {
+			if (EmptyField.grid[x + 1][y + 1].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) { // ignore
+
+		}
+
+		return count;
+	}
+
 	static ImageView digitToImage(int digit) {
 		/*
 		 * This method returns the appropriate image for each digit. Values of digit
