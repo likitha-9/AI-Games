@@ -70,24 +70,6 @@ public class MinesToEmptyField extends EmptyField {
 
 	}
 
-	static Pane addDigits(Pane pane, ArrayList<ArrayList<Integer>> coords, ArrayList<Integer> randomCols) {
-
-		for (int i = 0; i < randomCols.size(); i++) {
-			System.out.println("\n");
-			for (int j = 0; j < coords.get(randomCols.get(i)).size(); j++) {
-				/*
-				 * There are 8 cases. Each tile around a MINE is checked and assigned a digit,
-				 * rather than having to iterate from (0,0) to (N,N). This saves a significant
-				 * amount of time.
-				 */
-				int count = 0; // Initially, count=0
-
-			}
-		}
-		return pane;
-
-	}
-
 	static Shadow changeShadow(Rectangle border) {
 		/*
 		 * Mines are randomly placed. To distinguish a mine from a normal tile, a
@@ -100,6 +82,71 @@ public class MinesToEmptyField extends EmptyField {
 		shadow.setRadius(2);
 		// border.setEffect(shadow);
 		return shadow;
+	}
+
+	static Pane addDigits(Pane pane, ArrayList<ArrayList<Integer>> coords, ArrayList<Integer> randomCols) {
+
+		for (int i = 0; i < randomCols.size(); i++) {
+			System.out.println("\n");
+			for (int j = 0; j < coords.get(randomCols.get(i)).size(); j++) {
+				/*
+				 * There are 8 cases. Each tile around a MINE is checked and assigned a digit,
+				 * rather than having to iterate from (0,0) to (N,N). This saves a significant
+				 * amount of time.
+				 */
+				int count = 0; // Initially, count=0
+
+				// top left corner
+				try {
+					count += assignDigit(i - 1, j - 1);
+				} catch (Exception E) {
+				}
+
+				// top center
+				try {
+					count += assignDigit(i, j - 1);
+				} catch (Exception E) {
+				}
+
+				// top right corner
+				try {
+					count += assignDigit(i + 1, j - 1);
+				} catch (Exception E) {
+				}
+
+				// center left
+				try {
+					count += assignDigit(i - 1, j);
+				} catch (Exception E) {
+				}
+
+				// center right
+				try {
+					count += assignDigit(i + 1, j);
+				} catch (Exception E) {
+				}
+
+				// bottom left corner
+				try {
+					count += assignDigit(i - 1, j + 1);
+				} catch (Exception E) {
+				}
+
+				// bottom center
+				try {
+					count += assignDigit(i, j + 1);
+				} catch (Exception E) {
+				}
+
+				// bottom right corner
+				try {
+					count += assignDigit(i + 1, j + 1);
+				} catch (Exception E) {
+				}
+			}
+		}
+		return pane;
+
 	}
 
 	static int assignDigit(int x, int y) {
@@ -116,7 +163,6 @@ public class MinesToEmptyField extends EmptyField {
 			if (EmptyField.grid[x - 1][y - 1].border.getStroke() == Color.WHITE)
 				count++;
 		} catch (Exception E) { // ignore
-
 		}
 
 		try {
