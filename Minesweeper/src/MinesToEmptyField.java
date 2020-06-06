@@ -1,13 +1,16 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 //import com.sun.prism.paint.ImagePattern;
 
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.Shadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 /**
@@ -29,43 +32,82 @@ public class MinesToEmptyField extends EmptyField {
 	// static int layout[][]=new int[][]
 	public static Pane addMines(Pane pane, int mines) {
 
-		// The board reads in grid[column_numbe r][row_number] format.
+		// The board reads in grid[column_number][row_number] format.
 		int columns = EmptyField.grid.length, rows = EmptyField.grid[0].length;
 
 		// Keep track of where mines are being added.
-		ArrayList<ArrayList<Integer>> coords = new ArrayList<>();
-		ArrayList<Integer> listOfRandomCols = new ArrayList<Integer>();
-
-		for (int i = 0; i < columns; i++)
-			coords.add(new ArrayList<Integer>());
+		HashMap<Integer, ArrayList<Integer>> coords = new HashMap<Integer, ArrayList<Integer>>();// [Int,List<Int>] =>
+		// [Col#,Row#]
 
 		int placedMines = 0; // initially zero
 
 		Random rand = new Random(); // to place mines randomly
 
 		while (placedMines < mines) {
-			int randomCol = rand.nextInt(columns), randomRow = rand.nextInt(rows); // generate random column/row numbers
-			listOfRandomCols.add(randomCol);
-			if (coords.get(randomCol).contains(randomRow)) // check if mine is already present: location [col][row]
-				continue; // if present, continue; placedMines+=0
-			else {
-				coords.get(randomCol).add(randomRow); // if mine isn't present, add location into list
-				placedMines += 1;
+			int randomCol = rand.nextInt(columns), randomRow = rand.nextInt(rows);
+			ArrayList<Integer> listOfRows;
 
-				// Visibly see where the mines are located:
-				EmptyField.grid[randomCol][randomRow].border
-				.setEffect(changeShadow(EmptyField.grid[randomCol][randomRow].border));
-				EmptyField.grid[randomCol][randomRow].border.setStroke(Color.WHITE);
-
-				/*
-				 * Image img=new Image("1.png"); ImagePattern imagePattern = new
-				 * ImagePattern(img); ImageView imagePattern2 = new ImageView(img);
-				 * EmptyField.grid[10][0].border.setFill(imagePattern);
-				 * System.out.println(EmptyField.grid[0][0].border.getFill());
-				 */
+			try {
+				listOfRows = coords.get(randomCol);
+			} catch (Exception E) {
+				listOfRows = new ArrayList<Integer>();
 			}
+
+			// check if mine is already present: location[col][row]
+			boolean flag = false;
+			try {
+				if (coords.get(randomCol).contains(randomRow))
+					flag = true;
+			} catch (Exception E) {
+			}
+
+			if (flag) {
+				placedMines += 0; // a mine already exists here
+				continue;
+			} else {
+				listOfRows.add(0, randomRow);
+				coords.put(randomCol, listOfRows);
+				placedMines++;
+			}
+
+			// Visibly see where the mines are located:
+			EmptyField.grid[randomCol][randomRow].border
+			.setEffect(changeShadow(EmptyField.grid[randomCol][randomRow].border));
+			EmptyField.grid[randomCol][randomRow].border.setStroke(Color.WHITE);
+
 		}
-		pane = addDigits(pane, coords, listOfRandomCols);
+		/*
+		 * // Keep track of where mines are being added. ArrayList<ArrayList<Integer>>
+		 * coords = new ArrayList<>(); ArrayList<Integer> listOfRandomCols = new
+		 * ArrayList<Integer>();
+		 *
+		 * for (int i = 0; i < columns; i++) coords.add(new ArrayList<Integer>());
+		 *
+		 * int placedMines = 0; // initially zero
+		 *
+		 * Random rand = new Random(); // to place mines randomly
+		 *
+		 * while (placedMines < mines) { int randomCol = rand.nextInt(columns),
+		 * randomRow = rand.nextInt(rows); // generate random column/row numbers
+		 * listOfRandomCols.add(randomCol); if
+		 * (coords.get(randomCol).contains(randomRow)) // check if mine is already
+		 * present: location [col][row] continue; // if present, continue;
+		 * placedMines+=0 else { coords.get(randomCol).add(randomRow); // if mine isn't
+		 * present, add location into list placedMines += 1;
+		 *
+		 * // Visibly see where the mines are located:
+		 * EmptyField.grid[randomCol][randomRow].border
+		 * .setEffect(changeShadow(EmptyField.grid[randomCol][randomRow].border));
+		 * EmptyField.grid[randomCol][randomRow].border.setStroke(Color.WHITE);
+		 *
+		 *
+		 * Image img=new Image("1.png"); ImagePattern imagePattern = new
+		 * ImagePattern(img); ImageView imagePattern2 = new ImageView(img);
+		 * EmptyField.grid[10][0].border.setFill(imagePattern);
+		 * System.out.println(EmptyField.grid[0][0].border.getFill());
+		 *
+		 * } } pane = addDigits(pane, coords, listOfRandomCols); return pane;
+		 */
 		return pane;
 
 	}
@@ -86,7 +128,7 @@ public class MinesToEmptyField extends EmptyField {
 
 	static Pane addDigits(Pane pane, ArrayList<ArrayList<Integer>> coords, ArrayList<Integer> randomCols) {
 
-		for (int i = 0; i < randomCols.size(); i++) {
+		for (int i = 0; i < coords.size(); i++) {
 			System.out.println("\n");
 			for (int j = 0; j < coords.get(randomCols.get(i)).size(); j++) {
 				/*
@@ -94,53 +136,58 @@ public class MinesToEmptyField extends EmptyField {
 				 * rather than having to iterate from (0,0) to (N,N). This saves a significant
 				 * amount of time.
 				 */
-				int count = 0; // Initially, count = 0
-
+				int count;
 				// top left corner
 				try {
-					count += assignDigit(i - 1, j - 1);
+					count = assignDigit(i - 1, j - 1);
+
+					Image img = new Image(count + ".png");
+					ImagePattern imagePattern = new ImagePattern(img);
+					EmptyField.grid[randomCols.get(i) - 1][coords.get(randomCols.get(i)).get(j) - 1].border
+					.setFill(imagePattern);
+
 				} catch (Exception E) {
 				}
 
 				// top center
 				try {
-					count += assignDigit(i, j - 1);
+					count = assignDigit(i, j - 1);
 				} catch (Exception E) {
 				}
 
 				// top right corner
 				try {
-					count += assignDigit(i + 1, j - 1);
+					count = assignDigit(i + 1, j - 1);
 				} catch (Exception E) {
 				}
 
 				// center left
 				try {
-					count += assignDigit(i - 1, j);
+					count = assignDigit(i - 1, j);
 				} catch (Exception E) {
 				}
 
 				// center right
 				try {
-					count += assignDigit(i + 1, j);
+					count = assignDigit(i + 1, j);
 				} catch (Exception E) {
 				}
 
 				// bottom left corner
 				try {
-					count += assignDigit(i - 1, j + 1);
+					count = assignDigit(i - 1, j + 1);
 				} catch (Exception E) {
 				}
 
 				// bottom center
 				try {
-					count += assignDigit(i, j + 1);
+					count = assignDigit(i, j + 1);
 				} catch (Exception E) {
 				}
 
 				// bottom right corner
 				try {
-					count += assignDigit(i + 1, j + 1);
+					count = assignDigit(i + 1, j + 1);
 				} catch (Exception E) {
 				}
 			}
@@ -199,64 +246,58 @@ public class MinesToEmptyField extends EmptyField {
 			if (EmptyField.grid[x][y + 1].border.getStroke() == Color.WHITE)
 				count++;
 		} catch (Exception E) { // ignore
+		}
+
+		try {
+			if (EmptyField.grid[x + 1][y + 1].border.getStroke() == Color.WHITE)
+				count++;
+		} catch (Exception E) { // ignore
 
 		}
 
+		assert count >= 0 && count < 9;
+		return count;
 	}
 
-	try
+	static ImageView digitToImage(int digit) {
+		/*
+		 * This method returns the appropriate image for each digit. Values of digit
+		 * range from 1-8.
+		 */
+		assert digit >= 1 && digit <= 8;
 
-	{
-		if (EmptyField.grid[x + 1][y + 1].border.getStroke() == Color.WHITE)
-			count++;
-	}catch(
-			Exception E)
-	{ // ignore
+		ImageView img = null;
+		switch (digit) {
+		case 1:
+			img = new ImageView("/digits/1.png");
+			break;
+		case 2:
+			img = new ImageView("/digits/2.png");
+			break;
+		case 3:
+			img = new ImageView("/digits/3.png");
+			break;
+		case 4:
+			img = new ImageView("/digits/4.png");
+			break;
+		case 5:
+			img = new ImageView("/digits/5.png");
+			break;
+		case 6:
+			img = new ImageView("/digits/6.png");
+			break;
+		case 7:
+			img = new ImageView("/digits/7.png");
+			break;
+		case 8:
+			img = new ImageView("/digits/8.png");
+			break;
+		default:
+			break;
+		}
 
+		return img;
 	}
-
-	return count;
-}
-
-static ImageView digitToImage(int digit) {
-	/*
-	 * This method returns the appropriate image for each digit. Values of digit
-	 * range from 1-8.
-	 */
-	assert digit >= 1 && digit <= 8;
-
-	ImageView img = null;
-	switch (digit) {
-	case 1:
-		img = new ImageView("/digits/1.png");
-		break;
-	case 2:
-		img = new ImageView("/digits/2.png");
-		break;
-	case 3:
-		img = new ImageView("/digits/3.png");
-		break;
-	case 4:
-		img = new ImageView("/digits/4.png");
-		break;
-	case 5:
-		img = new ImageView("/digits/5.png");
-		break;
-	case 6:
-		img = new ImageView("/digits/6.png");
-		break;
-	case 7:
-		img = new ImageView("/digits/7.png");
-		break;
-	case 8:
-		img = new ImageView("/digits/8.png");
-		break;
-	default:
-		break;
-	}
-
-	return img;
-}
 }
 
 /**/
