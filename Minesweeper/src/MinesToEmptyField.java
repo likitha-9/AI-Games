@@ -94,7 +94,7 @@ public class MinesToEmptyField extends EmptyField {
 				 * rather than having to iterate from (0,0) to (N,N). This saves a significant
 				 * amount of time.
 				 */
-				int count = 0; // Initially, count=0
+				int count = 0; // Initially, count = 0
 
 				// top left corner
 				try {
@@ -202,55 +202,61 @@ public class MinesToEmptyField extends EmptyField {
 
 		}
 
-		try {
-			if (EmptyField.grid[x + 1][y + 1].border.getStroke() == Color.WHITE)
-				count++;
-		} catch (Exception E) { // ignore
-
-		}
-
-		return count;
 	}
 
-	static ImageView digitToImage(int digit) {
-		/*
-		 * This method returns the appropriate image for each digit. Values of digit
-		 * range from 1-8.
-		 */
-		assert digit >= 1 && digit <= 8;
+	try
 
-		ImageView img = null;
-		switch (digit) {
-		case 1:
-			img = new ImageView("/digits/1.png");
-			break;
-		case 2:
-			img = new ImageView("/digits/2.png");
-			break;
-		case 3:
-			img = new ImageView("/digits/3.png");
-			break;
-		case 4:
-			img = new ImageView("/digits/4.png");
-			break;
-		case 5:
-			img = new ImageView("/digits/5.png");
-			break;
-		case 6:
-			img = new ImageView("/digits/6.png");
-			break;
-		case 7:
-			img = new ImageView("/digits/7.png");
-			break;
-		case 8:
-			img = new ImageView("/digits/8.png");
-			break;
-		default:
-			break;
-		}
+	{
+		if (EmptyField.grid[x + 1][y + 1].border.getStroke() == Color.WHITE)
+			count++;
+	}catch(
+			Exception E)
+	{ // ignore
 
-		return img;
 	}
+
+	return count;
+}
+
+static ImageView digitToImage(int digit) {
+	/*
+	 * This method returns the appropriate image for each digit. Values of digit
+	 * range from 1-8.
+	 */
+	assert digit >= 1 && digit <= 8;
+
+	ImageView img = null;
+	switch (digit) {
+	case 1:
+		img = new ImageView("/digits/1.png");
+		break;
+	case 2:
+		img = new ImageView("/digits/2.png");
+		break;
+	case 3:
+		img = new ImageView("/digits/3.png");
+		break;
+	case 4:
+		img = new ImageView("/digits/4.png");
+		break;
+	case 5:
+		img = new ImageView("/digits/5.png");
+		break;
+	case 6:
+		img = new ImageView("/digits/6.png");
+		break;
+	case 7:
+		img = new ImageView("/digits/7.png");
+		break;
+	case 8:
+		img = new ImageView("/digits/8.png");
+		break;
+	default:
+		break;
+	}
+
+	return img;
+}
 }
 
 /**/
